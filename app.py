@@ -29,18 +29,18 @@ st.markdown(
 G = nx.DiGraph()
 
 noms_utilisateurs = [
-    "Alice", "Bob", "Chloé", "David", "Emma",
+    "Alicia", "Bob", "Chloé", "David", "Emma",
     "Farid", "Grace", "Hugo", "Inès", "Julien",
 ]
 G.add_nodes_from(noms_utilisateurs)
 
 # Relations (arêtes) représentant les interactions du réseau social
 relations = [
-    ("Alice", "Bob"), ("Alice", "Chloé"), ("Bob", "Chloé"),
-    ("Chloé", "David"), ("David", "Emma"), ("Emma", "Alice"),
-    ("Farid", "Alice"), ("Farid", "Bob"), ("Grace", "Farid"),
+    ("Alicia", "Bob"), ("Alicia", "Chloé"), ("Bob", "Chloé"),
+    ("Chloé", "David"), ("David", "Emma"), ("Emma", "Alicia"),
+    ("Farid", "Alicia"), ("Farid", "Bob"), ("Grace", "Farid"),
     ("Hugo", "Grace"), ("Inès", "Hugo"), ("Julien", "Inès"),
-    ("Julien", "Alice"), ("Emma", "Julien"), ("David", "Grace"),
+    ("Julien", "Alicia"), ("Emma", "Julien"), ("David", "Grace"),
     ("Bob", "Hugo"), ("Chloé", "Inès"),
 ]
 G.add_edges_from(relations)
@@ -66,7 +66,7 @@ scores_tries = sorted(scores_pagerank.items(), key=lambda item: item[1], reverse
 col_graphe, col_scores = st.columns([2, 1])
 
 with col_scores:
-    st.subheader("📊 Classement PageRank")
+    st.subheader("Classement de PageRank")
     for rang, (nom, score) in enumerate(scores_tries, start=1):
         st.write(f"**{rang}. {nom}** — {score:.4f}")
 
@@ -74,7 +74,7 @@ with col_scores:
     st.bar_chart({nom: score for nom, score in scores_tries})
 
 with col_graphe:
-    st.subheader("🌐 Visualisation du réseau")
+    st.subheader("Visualisation du réseau")
 
     fig, ax = plt.subplots(figsize=(8, 7))
     disposition = nx.spring_layout(G, seed=42)
@@ -100,4 +100,5 @@ st.markdown("---")
 st.caption(
     "Graphe généré avec NetworkX · Visualisation Matplotlib · "
     "Application hébergée avec Streamlit"
+    "Team Overflow" 
 )
